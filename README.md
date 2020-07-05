@@ -1,3 +1,10 @@
+# Latest updates
+----------------
+New functionalities are released :\
+    - Delete an article from your favorites
+    - Change your password
+    - Get a new password in case you forgot it
+
 # Pur Beurre, that's a fat life
 ----------------
 Pur Beurre is a web application using the open database provided by [Open Food Facts](https://world.openfoodfacts.org/).
