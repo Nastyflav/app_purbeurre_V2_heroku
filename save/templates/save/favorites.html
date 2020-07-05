@@ -44,6 +44,11 @@
             <h5 class="card-title product-title">{{ sub.substitute_id.name }}</h5>
               <a class="nav-link text-white-75 font-weight-light mb-5" href="{% url 'search:product-details' sub.substitute_id.id %}">Plus de détails
               <i class="fas fa-info-circle fa-2x fa-fw" title="Fiche produit"></i></a>
+            <form action="{% url 'save:delete' sub.id %}" method="POST">
+                {% csrf_token %}
+              <button type='submit' class="btn btn-outline-info">
+              <i class="far fa-save fa-2x fa-fw"></i> Supprimer</button>
+            </form>
           </div>
         </div>
     </div>

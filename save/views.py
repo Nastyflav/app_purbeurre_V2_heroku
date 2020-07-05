@@ -9,9 +9,11 @@ Licence: `GNU GPL v3` GNU GPL v3: http://www.gnu.org/licenses/
 
 from django.shortcuts import redirect
 from django.views.generic import ListView
+from django.views.generic.edit import DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 from search.models import Product
 from .models import Favorites
@@ -88,3 +90,9 @@ class FavoritesView(ListView, LoginRequiredMixin):
     def get_queryset(self):
         return Favorites.objects.filter(
             user_id=self.request.user.id).order_by("original_product_id")
+
+
+class DeleteView(LoginRequiredMixin, DeleteView):
+    """To delete a product from the favorites"""
+    model = Favorites
+    success_url = reverse_lazy('save:favorites')

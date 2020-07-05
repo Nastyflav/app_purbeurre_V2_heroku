@@ -17,4 +17,5 @@ urlpatterns = [
          name="substitution"),
     path('save/', views.saving_product, name="save"),
     path('favorites/', views.FavoritesView.as_view(), name="favorites"),
+    path('delete/<int:pk>', views.DeleteView.as_view(), name="delete"),
 ]
