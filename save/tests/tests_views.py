@@ -185,3 +185,40 @@ class TestViews(TestCase):
             password='pixar2020')
         response = self.client.get(self.favorites_url)
         self.assertEqual(response.context_data["object_list"].count(), 0)
+
+    def test_favorite_deletion_success(self):
+        """
+        To check the redirection when a product is removed
+        from the favorites list, and the products count
+        
+        """
+        self.client.login(
+            username='remy@purbeurre.fr',
+            password='pixar2020')
+
+        user_id = User.objects.get(email='remy@purbeurre.fr').id
+        response = self.client.post(
+            self.save_url, {
+                'original_product_id': Product.objects.get(id=1).id,
+                'substitute_id': Product.objects.get(id=2).id,
+                'user_id': user_id,
+                'next': '/',
+            }
+        )
+        response = self.client.post("/save/delete/1")
+        self.assertEqual(response.status_code, 302)
+
+        response = self.client.get(self.favorites_url)
+        self.assertEqual(response.context_data["object_list"].count(), 0)
+
+    def test_favorite_deletion_when_unknown_product(self):
+        """
+        To check the favorites page when the delete product
+        is unknown for the database
+        
+        """
+        self.client.login(
+            username='remy@purbeurre.fr',
+            password='pixar2020')
+        response = self.client.post("/save/delete/15")
+        self.assertEqual(response.status_code, 404)
