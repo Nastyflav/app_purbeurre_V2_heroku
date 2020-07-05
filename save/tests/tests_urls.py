@@ -18,6 +18,7 @@ class TestUrls(TestCase):
         self.sub_url = reverse('save:substitution', args=[10])
         self.save_url = reverse('save:save')
         self.fav_url = reverse('save:favorites')
+        self.del_url = reverse('save:delete', args=[1])
 
     def test_substitution_page_url(self):
         """To check the substitution url when requested"""
@@ -30,3 +31,7 @@ class TestUrls(TestCase):
     def test_favorites_page_url(self):
         """To check the favorites url when requested"""
         self.assertEqual(self.fav_url, '/save/favorites/')
+
+    def test_delete_page_url(self):
+        """To check the favorites delete when requested"""
+        self.assertEqual(self.del_url, '/save/delete/1')
