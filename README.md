@@ -1,8 +1,8 @@
 # Latest updates
 ----------------
 New functionalities are released :\
-    - Delete an article from your favorites
-    - Change your password
+    - Delete an article from your favorites\
+    - Change your password\
     - Get a new password in case you forgot it
 
 # Pur Beurre, that's a fat life
