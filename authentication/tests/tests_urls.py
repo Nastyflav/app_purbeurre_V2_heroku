@@ -19,6 +19,7 @@ class TestUrls(TestCase):
         self.logout_url = reverse('authentication:logout')
         self.signup_url = reverse('authentication:signup')
         self.profile_url = reverse('authentication:profile')
+        self.modify_pwd_url = reverse('authentication:modify_pwd')
 
     def test_login_page_url(self):
         """To check the login url when requested"""
@@ -33,5 +34,9 @@ class TestUrls(TestCase):
         self.assertEqual(self.signup_url, '/authentication/inscription/')
 
     def test_profile_page_url(self):
-        """To check the logout url when requested"""
+        """To check the profile url when requested"""
         self.assertEqual(self.profile_url, '/authentication/profil/')
+
+    def test_modify_pwd_page_url(self):
+        """To check the password modification url when requested"""
+        self.assertEqual(self.modify_pwd_url, '/authentication/modifier-mot-de-passe/')
