@@ -21,6 +21,7 @@ class TestViews(TestCase):
         self.logout_url = reverse('authentication:logout')
         self.profile_url = reverse('authentication:profile')
         self.signup_url = reverse('authentication:signup')
+        self.modify_pwd_url = reverse('authentication:modify_pwd')
         self.user = User.objects.create(email='user@test.dj')
         self.user.set_password('supertest2020')
         self.user.save()
@@ -67,3 +68,34 @@ class TestViews(TestCase):
         response = self.client.get(self.logout_url)
         self.assertRedirects(
             response, '/', status_code=302, target_status_code=200)
+
+    def test_check_password(self):
+        """To check the current user password"""
+        self.client.login(username='user@test.dj', password='supertest2020')
+        user = User.objects.get(email='user@test.dj')
+        self.assertEqual(user.check_password('supertest2020'), True)
+
+    def test_modify_password_with_success(self):
+        """To test when an user success to change his password"""
+        self.client.login(username='user@test.dj', password='supertest2020')
+        response = self.client.post(self.modify_pwd_url, {
+            "old_password": "supertest2020",
+            "new_password1": "supertest2021",
+            "new_password2": "supertest2021"
+        })
+        self.assertRedirects(
+            response, '/authentication/modifier-mot-de-passe/done/',
+            status_code=302, target_status_code=200)
+
+        user = User.objects.get(email='user@test.dj')
+        self.assertEqual(user.check_password('supertest2021'), True)
+
+    def test_modify_password_failure(self):
+        """To test when an user doesn't manage to change his password"""
+        self.client.login(username='user@test.dj', password='supertest2020')
+        response = self.client.post(self.modify_pwd_url, {
+            "old_password": "supertest2020",
+            "new_password1": "supertest2021",
+            "new_password2": "supertest2022"
+        })
+        self.assertEqual(response.status_code, 200)
