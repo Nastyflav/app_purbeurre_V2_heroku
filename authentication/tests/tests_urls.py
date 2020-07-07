@@ -19,8 +19,10 @@ class TestUrls(TestCase):
         self.logout_url = reverse('authentication:logout')
         self.signup_url = reverse('authentication:signup')
         self.profile_url = reverse('authentication:profile')
-        self.modify_pwd_url = reverse('authentication:modify_pwd')
-        self.reset_pwd = reverse('authentication:password_reset')
+        self.change_pwd_url = reverse('password_change')
+        self.change_pwd_done_url = reverse('password_change_done')
+        self.reset_pwd_url = reverse('password_reset')
+        self.reset_pwd_done_url = reverse('password_reset_done')
 
     def test_login_page_url(self):
         """To check the login url when requested"""
@@ -38,10 +40,21 @@ class TestUrls(TestCase):
         """To check the profile url when requested"""
         self.assertEqual(self.profile_url, '/authentication/profil/')
 
-    def test_modify_pwd_page_url(self):
+    def test_change_pwd_page_url(self):
         """To check the password modification url when requested"""
-        self.assertEqual(self.modify_pwd_url, '/authentication/modifier-mot-de-passe/')
+        self.assertEqual(self.change_pwd_url,
+                         '/authentication/password_change/')
+
+    def test_change_pwd_page_url_when_its_done(self):
+        """To check the password change confirmation url when requested"""
+        self.assertEqual(self.change_pwd_done_url,
+                         '/authentication/password_change/done/')
 
     def test_reset_pwd_page_url(self):
         """To check the password reset url when requested"""
-        self.assertEqual(self.reset_pwd, '/authentication/reset-password/')
+        self.assertEqual(self.reset_pwd_url, '/authentication/password_reset/')
+
+    def test_reset_pwd_page_url_when_its_done(self):
+        """To check the sent email confirmation url when requested"""
+        self.assertEqual(self.reset_pwd_done_url,
+                         '/authentication/password_reset/done/')
