@@ -7,7 +7,7 @@ Licence: `GNU GPL v3` GNU GPL v3: http://www.gnu.org/licenses/
 
 """
 
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView
 
 from .models import Product
@@ -28,7 +28,7 @@ class ProductSearchView(ListView):
     template_name = 'search/search_results.html'
 
     def get(self, request, *args, **kwargs):
-        """ No Server Error """
+        """No Server Error"""
         query = self.request.GET.get("query")
         if query:
             return super(ProductSearchView, self).get(request, *args, **kwargs)
