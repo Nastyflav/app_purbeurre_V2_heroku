@@ -27,6 +27,9 @@ class ProductSearchView(ListView):
     paginate_by = 6
     template_name = 'search/search_results.html'
 
+    def search_filter(self):
+        
+
     def get(self, request, *args, **kwargs):
         """To redirect if the query is empty"""
         query = self.request.GET.get("query")
