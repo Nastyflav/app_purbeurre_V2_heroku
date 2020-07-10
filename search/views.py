@@ -28,7 +28,7 @@ class ProductSearchView(ListView):
     template_name = 'search/search_results.html'
 
     def get(self, request, *args, **kwargs):
-        """No Server Error"""
+        """To redirect if the query is empty"""
         query = self.request.GET.get("query")
         if query:
             return super(ProductSearchView, self).get(request, *args, **kwargs)

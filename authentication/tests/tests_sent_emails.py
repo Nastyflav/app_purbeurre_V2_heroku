@@ -14,7 +14,7 @@ from django.core import mail
 class MailTest(TestCase):
     """Test the sent emails"""
     def test_sent_emails(self):
-        "To check if the emails are well sent by the system"
+    "To check if the emails are well sent by the system"
         mail.send_mail('Mail subject', 'Message',
                        'test@dj.com',
                        ['support@purbeurre.fr']
