@@ -108,3 +108,13 @@ class TestViews(TestCase):
         """To check the invalid response when there's no food"""
         response = self.client.get('/search/details/15')
         self.assertEqual(response.status_code, 404)
+
+    # def test_parser(self):
+    #     """Test the method that delete all the alphanum symbols"""
+    #     USER_QUERY = script.Parser('nutella!')
+    #     self.USER_QUERY.clean_input_of_symbols()
+    #     assert self.USER_QUERY.textinput == 'nutella '
+
+    def test_lowercase(self):
+        response = self.client.get(self.search_url + "?query=NUTELLA")
+        self.assertEqual(response.context_data["search"], "nutella")

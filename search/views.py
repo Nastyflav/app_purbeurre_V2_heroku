@@ -27,12 +27,21 @@ class ProductSearchView(ListView):
     paginate_by = 6
     template_name = 'search/search_results.html'
 
-    def search_filter(self):
-        
+    def parser(self, input):
+        """Clean the query from all the alphanum symbols"""
+        self.input = str(input).casefold()  # converts into lower cases
+        # with open("search/symbols.txt", "r",
+        #           encoding="cp1252") as file:
+        #     file = file.readlines()
+        #     for symbol in file:
+        #         symbol = symbol.replace("\n", "")
+        #         self.input = self.input.replace(symbol, " ")
 
     def get(self, request, *args, **kwargs):
         """To redirect if the query is empty"""
         query = self.request.GET.get("query")
+        query = str(query).casefold()  # converts into lower cases
+        print(query)
         if query:
             return super(ProductSearchView, self).get(request, *args, **kwargs)
         else:
