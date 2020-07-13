@@ -7,7 +7,7 @@ Licence: `GNU GPL v3` GNU GPL v3: http://www.gnu.org/licenses/
 
 """
 
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 
 from .models import Product
@@ -40,8 +40,6 @@ class ProductSearchView(ListView):
     def get(self, request, *args, **kwargs):
         """To redirect if the query is empty"""
         query = self.request.GET.get("query")
-        query = str(query).casefold()  # converts into lower cases
-        print(query)
         if query:
             return super(ProductSearchView, self).get(request, *args, **kwargs)
         else:
@@ -58,6 +56,13 @@ class ProductSearchView(ListView):
         """Returns the context"""
         context = super().get_context_data(**kwargs)
         context['search'] = self.request.GET.get("query")
+        context['search'] = str(context['search']).casefold()
+        with open("search/symbols.txt", "r",
+                  encoding="cp1252") as file:
+            file = file.readlines()
+            for symbol in file:
+                symbol = symbol.replace("\n", "")
+                context['search'] = context['search'].replace(symbol, " ")
         return context
 
 
