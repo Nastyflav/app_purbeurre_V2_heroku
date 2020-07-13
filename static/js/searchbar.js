@@ -1,2 +1,5 @@
-// var string = "Exampl$e o$f ! some#%t%ing.";
-// $('body').html(string.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, ' '));
+function removeChar() {
+    var query = document.getElementById("query").value;
+    query = query.replace(/[^a-zA-Z0-9]/g, '');
+    document.getElementById("query").value  = query;
+}

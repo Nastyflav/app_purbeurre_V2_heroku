@@ -33,7 +33,7 @@
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         <li class="nav-item">
                             <form method="get" action="{% url 'search:search' %}">
-                                <input class="form-control" name="query" type="text" placeholder="Chercher" required/>
+                                <input class="form-control" name="query" type="text" id="query" placeholder="Chercher" required onChange="removeChar();"/>
                             </form>
                         </li>
                         <li class="nav-item">
