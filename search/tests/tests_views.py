@@ -112,4 +112,4 @@ class TestViews(TestCase):
     def test_parser(self):
         """To test the lowercase and the special characters removal"""
         response = self.client.get(self.search_url + "?query=NUTELLA%!")
-        self.assertEqual(response.context_data["search"], "nutella  ")
+        self.assertEqual(response.context_data["search"], "nutella")

@@ -62,7 +62,7 @@ class ProductSearchView(ListView):
             file = file.readlines()
             for symbol in file:
                 symbol = symbol.replace("\n", "")
-                context['search'] = context['search'].replace(symbol, " ")
+                context['search'] = context['search'].replace(symbol, "")
         return context
 
 
