@@ -19,7 +19,7 @@
                 <form method="get" action="{% url 'search:search' %}" id="query-form"> 
                     <div class="form-row align-items-center">
                         <div class="col-sm-9 my-1">
-                            <input type="text" name="query" class="form-control" placeholder="Produit" id="query" required onChange="removeChar();"/>
+                            <input type="text" name="query" class="form-control" placeholder="Produit" id="query-main" required onChange="removeCharMain();"/>
                         </div>
                         <div class="col-auto my-1">
                             <button type="submit" class="btn btn-secondary" id="search-btn">Chercher</button>
