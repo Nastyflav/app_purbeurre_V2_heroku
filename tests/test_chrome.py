@@ -90,7 +90,7 @@ class TestChrome(StaticLiveServerTestCase):
     def test_search_product_details(self):
         """To test when the user wants to search a prod and its details"""
         self.selenium.get('%s%s' % (self.live_server_url, '/'))
-        query_input = self.selenium.find_element_by_id("query")
+        query_input = self.selenium.find_element_by_id("query-main")
         query_input.send_keys('nutella')
         search = self.selenium.find_element_by_id("search-btn")
         search.send_keys(Keys.RETURN)
@@ -101,7 +101,7 @@ class TestChrome(StaticLiveServerTestCase):
     def test_save_product(self):
         """To test when the user wants to save a product"""
         self.test_login()
-        query_input = self.selenium.find_element_by_id("query")
+        query_input = self.selenium.find_element_by_id("query-main")
         query_input.send_keys('nutella')
         search = self.selenium.find_element_by_id("search-btn")
         search.send_keys(Keys.RETURN)
