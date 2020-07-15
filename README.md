@@ -1,4 +1,4 @@
-# Latest updates
+# Latest updates V.2
 ----------------
 New functionalities are released :\
     - Delete an article from your favorites\
@@ -14,16 +14,16 @@ quality. The program also gives you the possibility of creating an user account 
 
 # What does Pur Beurre really do ?
 ----------------
-Once you arrive on the [Pur Beurre application page](https://167.71.140.193/) :\
+Once you arrive on the [Pur Beurre application page](https://ajout-purbeurre.herokuapp.com/) :\
 	- you can make a simple request by using the query form, then visualize the results \
 	- you can create an account and then log in to be able to save your future search results
 
-Pur Beurre is hosted by [DigitalOcean](https://www.digitalocean.com/), and for now is only available in french language.	
+Pur Beurre is hosted by [Heroku](https://www.heroku.com/), and for now is only available in french language.	
 
 # For developpers, how to install and work on the app :
 --------------
-Clone with https : https://github.com/Nastyflav/P10_PurBeurre.git \
-or clone with SSH : git@github.com:Nastyflav/P10_PurBeurre.git \
+Clone with https : https://github.com/Nastyflav/P11_PurBeurre \
+or clone with SSH : git@github.com:Nastyflav/P11_PurBeurre.git \
 into a repo on your local machine \
 Documentation about pull --> https://help.github.com/en/articles/cloning-a-repository 
 
