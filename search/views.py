@@ -48,6 +48,13 @@ class ProductSearchView(ListView):
     def get_queryset(self):
         """Get the query and the products matching it"""
         query = self.request.GET.get("query")
+        query = str(query).casefold()
+        with open("search/symbols.txt", "r",
+                  encoding="cp1252") as file:
+            file = file.readlines()
+            for symbol in file:
+                symbol = symbol.replace("\n", "")
+                query = query.replace(symbol, "")
 
         return Product.objects.filter(
             name__icontains=query).order_by('-nutriscore')
@@ -56,13 +63,6 @@ class ProductSearchView(ListView):
         """Returns the context"""
         context = super().get_context_data(**kwargs)
         context['search'] = self.request.GET.get("query")
-        context['search'] = str(context['search']).casefold()
-        with open("search/symbols.txt", "r",
-                  encoding="cp1252") as file:
-            file = file.readlines()
-            for symbol in file:
-                symbol = symbol.replace("\n", "")
-                context['search'] = context['search'].replace(symbol, "")
         return context
 
 
