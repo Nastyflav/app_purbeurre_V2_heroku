@@ -92,7 +92,7 @@ class TestViews(TestCase):
     def test_searching_context(self):
         "To check the context query method"
         response = self.client.get(self.search_url + "?query=Nutella")
-        self.assertEqual(response.context_data["search"], "nutella")
+        self.assertEqual(response.context_data["search"], "Nutella")
 
     def test_search_is_valid(self):
         "To check if we find a product if it's there"
@@ -112,4 +112,5 @@ class TestViews(TestCase):
     def test_parser(self):
         """To test the lowercase and the special characters removal"""
         response = self.client.get(self.search_url + "?query=NUTELLA%!")
-        self.assertEqual(response.context_data["search"], "nutella")
+        self.assertEqual(response.context_data["object_list"].count(), 1)
+        self.assertEqual(response.status_code, 200)

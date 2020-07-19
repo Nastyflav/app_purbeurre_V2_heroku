@@ -46,7 +46,11 @@ class ProductSearchView(ListView):
             return redirect('index')
 
     def get_queryset(self):
-        """Get the query and the products matching it"""
+        """
+        Get the query and the products matching it
+        Parse the user queries
+        
+        """
         query = self.request.GET.get("query")
         query = str(query).casefold()
         with open("search/symbols.txt", "r",
